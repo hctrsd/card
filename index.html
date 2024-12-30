@@ -1,0 +1,159 @@
+<!DOCTYPE html> 
+<html>
+<head>
+    <style>
+        body {
+            background: linear-gradient(to bottom right, #92f914, #e3eeff);
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: Arial, sans-serif; /* Se añadió una fuente por defecto */
+        }
+
+        .intro-button {
+            padding: 15px 30px;
+            font-size: 1.2em;
+            background: linear-gradient(to right, #2dccfc, #2408f8);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+            margin: 20px;
+        }
+
+        .intro-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+        }
+
+        .card {
+            display: none;
+            max-width: 90%;
+            width: 400px;
+            margin: 20px auto;
+            background: linear-gradient(to right, #f80a0a, #f9adef);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .card.visible {
+            display: block;
+            animation: fadeIn 1s;
+        }
+
+        .heart {
+            color: rgb(17, 249, 91);
+            font-size: 40px;
+            animation: beat 1s infinite;
+        }
+
+        .title {
+            color: #ff4b6e;
+            font-size: 3em;
+            margin: 20px 0;
+            font-family: cursive;
+        }
+
+        .message {
+            color: #666;
+            font-style: italic;
+            margin: 20px 0;
+            line-height: 1.5;
+        }
+
+        .signature {
+            color: #ff4b6e;
+            font-size: 1.5em;
+            margin-top: 30px;
+            font-family: cursive;
+        }
+
+        .image {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            border-radius: 50%;
+            margin: 20px auto;
+            display: block;
+        }
+
+        @keyframes beat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Media Queries para dispositivos móviles */
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2em;
+            }
+            .intro-button {
+                font-size: 1em;
+                padding: 10px 20px;
+            }
+            .card {
+                width: 80%;
+                padding: 15px;
+            }
+            .signature {
+                font-size: 1.2em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .title {
+                font-size: 1.5em;
+            }
+            .intro-button {
+                font-size: 1em;
+                padding: 8px 15px;
+            }
+            .message {
+                font-size: 0.9em;
+            }
+            .signature {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="intro-button" onclick="showCard()">Open</button>
+
+    <div class="card" id="romanticCard">
+        <h1 class="title">Mor</h1>
+        <p class="message">
+            "Mor perdon por todo,<br>
+            Me haces muy feliz y no quiero estar lejos de ti.<br>
+            extraño tus besos, abrazos y tu compañia,<br>
+            Hablemos e intentemos salvar lo nuestro."
+        </p>
+        <div class="heart">❤️</div>
+        <img src="/IMG-20230731-WA0034.jpg" alt="Romantic" class="image">
+        
+        <div class="signature">
+            Te Amo mi negro hermoso ❤️
+        </div>
+    </div>
+
+    <script>
+        function showCard() {
+            document.getElementById('romanticCard').classList.add('visible');
+        }
+    </script>
+</body>
+</html>
