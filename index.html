@@ -1,161 +1,258 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html>
-<head>
+  <head>
+    <!-- Agregar Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
     <style>
-        body {
-            background: linear-gradient(to bottom right, #9ddbfa, #e3eeff);
-            min-height: 100vh;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            font-family: Arial, sans-serif; /* Se añadió una fuente por defecto */
-        }
+      body {
+        background: linear-gradient(to bottom right, #9ddbfa, #e3eeff);
+        min-height: 100vh;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-family: Arial, sans-serif; /* Se añadió una fuente por defecto */
+      }
 
-        .intro-button {
-            padding: 15px 30px;
-            font-size: 1.2em;
-            background: linear-gradient(to right, #2dccfc, #2408f8);
-            color: white;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            transition: all 0.3s;
-            margin: 20px;
-        }
+      .carousel-inner img {
+        width: 100%; /* Esto asegura que las imágenes ocupen todo el ancho del carrusel */
+        height: 400px; /* Establecer una altura fija para todas las imágenes */
+        object-fit: cover; /* Asegura que la imagen se recorte si es necesario para cubrir el área */
+      }
 
-        .intro-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
-        }
+      p {
+        text-align: justify;
+      }
 
-        .card {
-            display: none;
-            max-width: 95%;
-            width: 600px;
-            margin: 20px auto;
-            background:  #4fecf7;
-            border-radius: 15px;
-            padding: 20px;
-            text-align: center;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-        }
+      .intro-button {
+        padding: 15px 30px;
+        font-size: 1.2em;
+        background: #2408f8;
+        color: white;
+        border: none;
+        border-radius: 25px;
+        cursor: pointer;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s;
+        margin: 20px;
+      }
 
-        .card.visible {
-            display: block;
-            animation: fadeIn 1s;
-        }
+      .intro-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+      }
 
-        .heart {
-            color: rgb(17, 249, 91);
-            font-size: 40px;
-            animation: beat 1s infinite;
-        }
+      .card {
+        display: none;
+        max-width: 95%;
+        width: 600px;
+        margin: 20px auto;
+        background: #4fecf7;
+        border-radius: 15px;
+        padding: 20px;
+        text-align: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+      }
 
+      .card.visible {
+        display: block;
+        animation: fadeIn 1s;
+      }
+
+      .heart {
+        color: rgb(17, 249, 91);
+        font-size: 40px;
+        animation: beat 1s infinite;
+      }
+
+      .title {
+        color: #ff4b6e;
+        font-size: 3em;
+        margin: 20px 0;
+        font-family: cursive;
+      }
+
+      .message {
+        color: #120101;
+        font-style: italic;
+        margin: 20px 0;
+        line-height: 1.5;
+      }
+
+      .signature {
+        color: #660a04;
+        font-size: 1.5em;
+        margin-top: 30px;
+        font-family: cursive;
+      }
+
+      .image {
+        width: 100%;
+        max-width: 400px;
+        height: auto;
+        border-radius: 50%;
+        margin: 20px auto;
+        display: block;
+      }
+
+      @keyframes beat {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.2);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      /* Media Queries para dispositivos móviles */
+      @media (max-width: 768px) {
         .title {
-            color: #ff4b6e;
-            font-size: 3em;
-            margin: 20px 0;
-            font-family: cursive;
+          font-size: 2em;
         }
-
-        .message {
-            color: #120101;
-            font-style: italic;
-            margin: 20px 0;
-            line-height: 1.5;
+        .intro-button {
+          font-size: 1em;
+          padding: 10px 20px;
         }
-
+        .card {
+          width: 80%;
+          padding: 15px;
+        }
         .signature {
-            color: #660a04;
-            font-size: 1.5em;
-            margin-top: 30px;
-            font-family: cursive;
+          font-size: 1.2em;
         }
+      }
 
-        .image {
-            width: 100%;
-            max-width: 400px;
-            height: auto;
-            border-radius: 50%;
-            margin: 20px auto;
-            display: block;
+      @media (max-width: 480px) {
+        .title {
+          font-size: 1.5em;
         }
-
-        @keyframes beat {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-            100% { transform: scale(1); }
+        .intro-button {
+          font-size: 1em;
+          padding: 8px 15px;
         }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        .message {
+          font-size: 0.9em;
         }
-
-        /* Media Queries para dispositivos móviles */
-        @media (max-width: 768px) {
-            .title {
-                font-size: 2em;
-            }
-            .intro-button {
-                font-size: 1em;
-                padding: 10px 20px;
-            }
-            .card {
-                width: 80%;
-                padding: 15px;
-            }
-            .signature {
-                font-size: 1.2em;
-            }
+        .signature {
+          font-size: 1em;
         }
-
-        @media (max-width: 480px) {
-            .title {
-                font-size: 1.5em;
-            }
-            .intro-button {
-                font-size: 1em;
-                padding: 8px 15px;
-            }
-            .message {
-                font-size: 0.9em;
-            }
-            .signature {
-                font-size: 1em;
-            }
-        }
+      }
     </style>
-</head>
-<body>
-    <button class="intro-button" onclick="showCard()">Te Amo</button>
+  </head>
+  <body>
+    <button class="intro-button" onclick="showCard()">Negrito 🧔🏾‍♂️</button>
 
     <div class="card" id="romanticCard">
-        <h1 class="title">No me quiero ir..</h1>
-        <p class="message">
-           No, no me quiero ire por una discusíon, tampoco me ire porque estes lejos de mi.
-           <br>
-           Si la vida nos unio que sea para sanar y para aprender juntos.
-           En ti encontre un hermoso corazon, en un mundo tan complicado, siempre imagine que estariamos hasta viejos juntos, hacer todas esas cosas q hablamos y tantos viajes que quedaron a la deriva.
-           Asi que no pienso dejarte ir tan facilmente.
-           Porque no se encuentra un AMOR tan bonito como el nuestro.. todos los dias.
-        </p>
-        <div class="heart"></div>
-        <img src="img/IMG-20230731-WA0034.jpg" alt="" class="image">
-        
-        <div class="signature">
-            Te Amo ❤️
+      <h1 class="title">Por si lo vees alguna vez, No me queria ir..</h1>
+      <p class="message">
+        No, no me quería ir solo por una discusión, ni tampoco quería alejarme
+        de ti. Sin duda, la vida nos unió para aprender juntos y vivir lo que
+        vivimos. <br />
+        Siempre imaginé que estaríamos juntos hasta viejos, haciendo todas esas
+        cosas que hablamos y esos viajes que quedaron pendientes. <br />En algún
+        momento te mencioné que no me gusta mucho soñar con el futuro, pero me
+        atreví a hacerlo contigo, y sin duda fue algo hermoso. Sin embargo, el
+        resultado es que te extraño más y me resulta más difícil olvidar que te
+        amo. <br />La vida nos puso una prueba difícil y siempre pensé en que
+        estaríamos juntos. Hoy reconozco y lamento profundamente no haber sido
+        la pareja que estuvo al 100% contigo en ese momento tan difícil.
+        <br />Lo lamento con todo mi corazón, no supe cómo actuar, tal vez me
+        congelé y no supe reaccionar. Hoy, nunca pensé en estar con nadie más,
+        porque tú eras suficiente para mí y siempre traté de demostrártelo.
+        <br />Me entristece pensar que ya no te nace escribirme ni de saber de
+        mí, pero lo entiendo. Me di cuenta de que una forma de amar también es
+        permitir que la otra persona se aleje si asi lo desea. <br />Siempre
+        desearé lo mejor para ti, en todos los sentidos, y cuando te dije que
+        siempre estaré para ti, no fue una mentira... Estaré aquí si algún día
+        necesitas algo de mí. Por eso, no quería dejarte ir tan fácilmente,
+        porque un amor como el nuestro no se encuentra todos los días. Ahora,
+        solo nos queda seguir adelante... Gracias por todo, negrito. Realmente
+        fui muy feliz durante el tiempo que estuvimos juntos, a pesar de todo lo
+        que nos pasó.
+      </p>
+
+      <div class="heart"></div>
+      <img src="img/IMG-20230731-WA0034.jpg" alt="" class="image" />
+
+      <div class="signature">Lindos momentos</div>
+      <br /><br /><br />
+
+      <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img
+              src="/img/IMG-20230731-WA0067.jpg"
+              class="d-block w-100"
+              alt="Imagen 1"
+            />
+          </div>
+          <div class="carousel-item">
+            <img
+              src="/img/IMG-20230731-WA0068.jpg"
+              class="d-block w-100"
+              alt="Imagen 2"
+            />
+          </div>
+          <div class="carousel-item">
+            <img
+              src="/img/IMG-20230731-WA0107.jpg"
+              class="d-block w-100"
+              alt="Imagen 3"
+            />
+          </div>
+          <div class="carousel-item">
+            <img
+              src="/img/IMG_20240213_141524.jpg"
+              class="d-block w-100"
+              alt="Imagen 4"
+            />
+          </div>
         </div>
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselExample"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselExample"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+
+      <!-- Agregar Bootstrap JS -->
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     </div>
 
     <script>
-        function showCard() {
-            document.getElementById('romanticCard').classList.add('visible');
-        }
+      function showCard() {
+        document.getElementById("romanticCard").classList.add("visible");
+      }
     </script>
-</body>
+  </body>
 </html>
